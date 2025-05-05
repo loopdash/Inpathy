@@ -1,5 +1,5 @@
 @font-face {
-    font-family: 'Gotham Rounded';
+    font-family: 'Gotham Rounded Bold';
     src: url(assets/font/gothamrnd_bold.otf);
     font-weight: 700;
     font-style: normal;
@@ -34,7 +34,7 @@ a {
 }
 
 body {
-    font-family: 'Gotham Rounded';
+    font-family: 'Gotham Rounded Bold';
     font-weight: 700;
     margin: 0;
     padding: 0;
@@ -46,7 +46,7 @@ section {
 
 }
 .banner-section {
-    height: 100vh;
+    height: 100svh;
     background-color: #FFFFFF;
     display: flex;
     justify-content: center;
@@ -68,26 +68,30 @@ section {
     z-index: 2;
 }
 .hd1 {
-    font-size:5vw;
-    color: var(--dark-grey);
-    text-align: center;
-    line-height: 1;
-    margin: 120px auto 70px;
+    margin: 70px auto 20px;
+    display: flex;
+    justify-content: center;
 }
-.hd1 > div {
-    display: inline-block;
-    animation: text .25s ease-in-out 0s 1 normal forwards;
-    opacity: 0;
+.hd1 lottie-player {
+    width: 100% !important;
+    height: 15vw !important;
 }
 .org-circle-con {
     margin: 0 auto;
     width: 89px;
     height: 89px;
+    position: relative;
+}
+.org-circle-con lottie-player {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .round_circle {
     background: linear-gradient(148deg, #FFD1C9 -2.74%, #FFAB9D 131.52%);
-    box-shadow: 0 24px 80px 15px #ff5f444d;
+    box-shadow: 0 24px 80px 0 #ff5f447d;
     width: inherit;
     height: inherit;
     border-radius: 50%;
@@ -121,7 +125,7 @@ section {
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 1.04vw 2.99vw;
+    padding: .8vw 2.99vw;
     font-weight: 700;
     transition: all .2s;
     box-shadow: 0 16px 60px #ff5f444d;
@@ -132,12 +136,13 @@ section {
 .cta:hover {
     box-shadow: 0 24px 80px 15px #ff5f444d;
 }
-.cta .btn-txt {
-    font-size: 20px;
-}
-.cta img {
-    height: 1.54vw;
+.cta .btn-icon {
     margin-top: -.3vw;
+    height: 1.54vw;
+}
+.cta .btn-txt img {
+    height: 1vw;
+    margin-top: 0.5vw;
 }
 
 
@@ -241,6 +246,7 @@ section {
     position: relative;
     transform: translateY(-30vh);
     transition: transform 0.1s linear;
+    z-index: 9;
 }
 .slider-bg {
     height: 100vh;
@@ -251,6 +257,7 @@ section {
 }
 .bg-1 {
     background-image: radial-gradient(circle at 0 0, #ffd5ce, #ffb1a3);
+    opacity: 1 !important;
 }
 .bg-2 {
     background-image: radial-gradient(circle at 0 0, #a3e3ff, #35c1ff);
@@ -279,6 +286,7 @@ section {
     align-items: center;
     gap: 26px;
     flex-direction: column;
+    z-index: 9;
 }
 .dot {
     width: 15px;
@@ -299,6 +307,7 @@ section {
     width: 100%;
     text-align: center;
     font-size: 3.56vw;
+    text-shadow: 0 0 58px rgb(0 0 0 / 19%);
     color: #fff;
     opacity: 0;
     z-index: 10;
@@ -317,13 +326,13 @@ section {
     opacity: 0;
 }
 .slider-img.sm-1 {
-    opacity: 1;
+    opacity: 1 !important;
 }
 .slider-img img {
     height: calc(100vh - 111px);
     /* height: 89.72vh; */
     width: auto;   
-    box-shadow: 40px 60px 200px #00000012;
+    box-shadow: 20px 20px 70px 0px #00000040;
     border-radius: 5.1vh;
 }
 
@@ -348,7 +357,7 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 205px;
 }
 .logo-slide a {
     display: flex;
@@ -357,10 +366,19 @@ section {
 .logo-slide img {
     filter: grayscale(100%) brightness(70%) contrast(100%);
     max-height: 50px;
+    transition: filter .4s linear;
 }
 .logo-slide:hover img {
     filter: none;
 }
+/* Logo img size */
+.logo-slide.all-tech img ,
+.logo-slide.pc-mag img ,
+.logo-slide.abc img {
+    max-height: 60px;
+}
+
+
 .footer-section .cta-wrap {
     margin-bottom: 7.286vw;
 }
@@ -382,25 +400,30 @@ section {
     gap: 137px;
     padding: 90px 0;
 }
-.social-share img {
-    height: 50px;
-    width: auto;
-    filter: grayscale(100%) brightness(90%) sepia(10%) contrast(100%) saturate(0%) hue-rotate(0deg);
-}
-.social-share a:hover img {
-    filter: none;
-}
-.copy-right-text {
-    margin: 0 auto;
-    text-align: center;
-    color: var(--text);
-    font-size: 20px;
-    font-weight: 400;
+.social-icon {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: .5rem;
 }
+.social-share img {
+    height: 44px;
+    width: auto;
+}
+.social-share img.hover ,
+.social-share a:hover img.default {
+    display: none;
+}
+.social-share a:hover img.hover {
+    display: block;
+}
+
+.copy-right-text {
+    display: flex;
+    justify-content: center;
+}
+.copy-right-text img {
+    height: 1.04vw;
+    line-height: 1;
+}
+
 
 
 /* Responsive  */
@@ -417,9 +440,16 @@ section {
        width: 4.72vw;
        height: 4.72vw;
     }
+    .org-circle-con lottie-player {
+        width: 16vw !important;
+        height: 16vw !important;
+    }
+   
     .hd1 {
-        margin: 10vh auto 6.45vh;
-        font-size: 5.3365vw;
+        margin: 7vh auto 1vh;
+    }
+    .hd1 lottie-player {
+        height: 15.5vw !important;
     }
     .cta {
         gap: 0.78vw;
@@ -453,10 +483,14 @@ section {
     }
 
     /* Slider Section */
+    .slider-text {
+        text-shadow: 0 0 4vw rgb(0 0 0 / 19%);
+    }
     .slider-img img {
         height: 89.167vh;
         border-radius: 5.2vh;
     }
+    
     .dots {
         gap: 1.367vw;
     }
@@ -480,13 +514,10 @@ section {
         width: 100%;
         object-fit: contain;
     }
-    .copy-right-text {
-        font-size: 1.1vw;
-        gap: .3vw;
+    .logo-slider-con .slick-track {
+        gap: 132px;
     }
-    .copy-right-text img {
-        width: .9765625vw;
-    }
+
     .social-share {
         gap: 6.9921875vw;
         padding: 8.680vh 0;
@@ -499,14 +530,14 @@ section {
     }
 
 
-
-
-
-
-
 }
 
 
+@media only screen and (min-width: 1280px) {
+    .slider-img img {
+        box-shadow: rgba(0, 0, 0, 0.07) 40px 60px 200px;
+    }
+}
 
 @media only screen and (max-width: 1680px) {
     .balanced {
@@ -523,9 +554,7 @@ section {
     .social-share img {
         height: 40px;
     }
-    .copy-right-text {
-        font-size: 16px;
-    }
+
 }
 
 @media only screen and (max-width: 1440px) {
@@ -543,6 +572,10 @@ section {
     .org-circle-con {
         width: 55px;
         height: 55px;
+    }
+    .org-circle-con lottie-player {
+        width: 180px !important;
+        height: 180px !important;
     }
     .cta .btn-txt {
         font-size: 16px;
@@ -578,15 +611,10 @@ section {
     .footer-menu-inner a {
         font-size: 16px;
     }
-    .copy-right-text {
-        font-size: 14px;
-        gap: 6px;
-    }
-    .copy-right-text img {
-        width: 14px;
-    }
+
 
 }
+
 
 @media only screen and (max-width: 1280px) {
 
@@ -600,6 +628,10 @@ section {
         width: 51px;
         height: 51px;
     }
+    .org-circle-con lottie-player {
+        width: 166px !important;
+        height: 166px !important;
+    }
     .banner-images-con {
         top: 20px;
     }
@@ -608,8 +640,7 @@ section {
     }
 
     .hd1 {
-        font-size: 5.3vw;
-        margin: 66px auto 40px;
+        margin: 42px auto 10px;
     }
 
     .hopeful {
@@ -630,13 +661,15 @@ section {
     /* CTA */
     .cta {
         gap: 7px;
-        padding: 11px 33px;
+        padding: 9px 32.5px;
     }
-    .cta .btn-txt {
-        font-size: 12px;
-    }
-    .cta img {
+
+    .cta .btn-icon  {
         height: 14px;
+    }
+    .cta .btn-txt img {
+        height: 11.69px;
+        margin-top: 5px;
     }
 
 
@@ -650,8 +683,17 @@ section {
     .footer-menu-inner a {
         font-size: 14.3px;
     }
+    .logo-slider-con .slick-track {
+        gap: 125px;
+    }
     .logo-slide img {
         max-height: 30px;
+    }
+    .logo-slide.all-tech img ,
+    .logo-slide.pc-mag img ,
+    .logo-slide.abc img,
+    .logo-slide.fox-business img {
+        max-height: 35px;
     }
     .logo-slider-con {
         padding: 112px 0;
@@ -659,6 +701,9 @@ section {
     .footer-sec-inner {
         padding-bottom: 65px;
     }
+
+
+
     
 
 
@@ -674,6 +719,18 @@ and (orientation: portrait) {
         width: 70px;
         height: 70px;
     }
+    .org-circle-con lottie-player {
+        width: 220px !important;
+        height: 220px !important;
+    }
+
+    .banner-section {
+        height: 93vh;
+    }
+    .slide-img-text {
+        transform: translateY(-32vh);
+    }
+    
     .banner-wrap {
         max-width: 88%;
         padding-top: 85px;
@@ -685,8 +742,10 @@ and (orientation: portrait) {
         display: none;
     }
     .hd1 {
-        font-size: 74.4px;
-        margin: 120px auto 60px;
+        margin: 75px auto 27px
+    }
+    .hd1 lottie-player {
+        height: 220px !important;
     }
     .hopeful {
         left: 0;
@@ -707,26 +766,25 @@ and (orientation: portrait) {
         top: 438px;
     }
 
-    .cta img {
-        height: 19px;
-        margin-top: -4px;
-    }
+
     .cta {
         gap: 7px;
-        padding: 15px 48px;
+        padding: 12px 45px;
     }
-    .cta img {
-        height: 19px;
+    .cta .btn-icon  {
+        height: 23px;
         margin-top: -4px;
     }
-    .cta .btn-txt {
-        font-size: 16px;
+    .cta .btn-txt img {
+        height: 15.69px;
+        margin-top: 7px;
     }
 
 
     /* SLider */
     .slider-text {
         font-size: 6.76vw;
+        line-height: 1.1;
     }
     .dots {
         left: 34px;
@@ -741,6 +799,18 @@ and (orientation: portrait) {
     }
     .footer-menu-inner a {
         font-size: 16px;
+    }
+    .logo-slider-con .slick-track {
+        gap: 100px;
+    }
+    .logo-slide img {
+        max-height: 30px;
+    }
+    .logo-slide.all-tech img ,
+    .logo-slide.pc-mag img ,
+    .logo-slide.abc img,
+    .logo-slide.fox-business img {
+        max-height: 35px;
     }
 
 }
@@ -759,18 +829,29 @@ and (orientation: landscape) {
         width: 40px;
         height: 40px;
     }
+    .org-circle-con lottie-player {
+        width: 130px !important;
+        height: 130px !important;
+    }
+
     .hd1 {
-        font-size: 41.4px;
-        margin: 54px auto 30px;
+        margin: 40px auto 14px;
+    }
+    .hd1 lottie-player {
+        height: 120px !important;
     }
     .cta .btn-txt {
         font-size: 10px;
     }
-    .cta img {
-        height: 10px;
+    .cta .btn-icon  {
+        height: 12px;
     }
     .cta {
-        padding: 8px 21px;
+        padding: 8px 23.5px;
+    }
+    .cta .btn-txt img {
+        height: 8.69px;
+        margin-top: 2px;
     }
 
 
@@ -824,7 +905,17 @@ and (orientation: landscape) {
         padding-bottom: 35px;
     }
     .logo-slide img {
-        max-height: 25px;;
+        max-height: 25px;
+    }
+    .logo-slider-con .slick-track {
+        gap: 100px;
+    }
+
+    .logo-slide.all-tech img ,
+    .logo-slide.pc-mag img ,
+    .logo-slide.abc img,
+    .logo-slide.fox-business img {
+        max-height: 30px;
     }
 
     .social-share {
@@ -840,24 +931,31 @@ and (orientation: landscape) {
     .footer-menu-inner a {
         font-size: 9px;
     }
-    .copy-right-text {
-        font-size: 9px;
-        gap: 4px;
-    }
     .copy-right-text img {
-        width: 9px;
+        height: 1.8vw;
     }
+
 
 
 }
 
 
 
-@media only screen 
-  and (max-width: 767px)  {
+@media only screen and (max-width: 767px)  {
+
+    .banner-section {
+        height: calc(100vh - 70px);
+    }
     .org-circle-con {
         width: 50px;
         height: 50px;
+    }
+    .org-circle-con lottie-player {
+        width: 160px !important;
+        height: 160px !important;
+    }
+    .round_circle {
+        box-shadow: 0 18px 45px 0 #ff5f447d;
     }
     .banner-wrap {
         max-width: 83.8%;
@@ -871,8 +969,10 @@ and (orientation: landscape) {
         display: none;
     }
     .hd1 {
-        font-size: 9vw;
-        margin: 85px auto 35px;
+        margin: 76px auto 11px;
+    }
+    .hd1 lottie-player {
+        height: 27vw !important;
     }
 
     .banner-images-con {
@@ -899,27 +999,32 @@ and (orientation: landscape) {
 
 
     /* CTA */
-    .cta img {
-        height: 19px;
-        margin-top: -4px;
-    }
+
     .cta {
         gap: 7px;
-        padding: 13px 37px;
+        padding: 10px 35.5px;
     }
-    .cta img {
+    .cta .btn-icon  {
         height: 19px;
         margin-top: -4px;
     }
-    .cta .btn-txt {
-        font-size: 12px;
+    .cta .btn-txt img {
+        height: 12px;
+        margin-top: 5px;
     }
 
 
 
     /* SLider */
+    .slider-img img {
+        box-shadow: unset;
+    }
+    .slide-img-text {
+        transform: translateY(-33vh);
+    }
     .slider-text {
         font-size: 6.76vw;
+        text-shadow: 0 0 58px rgb(0 0 0 / 41%);
     }
     .dots {
         left: 15px;
@@ -932,10 +1037,24 @@ and (orientation: landscape) {
 
 
      /* Footer */
-     .logo-slide img {
+     .logo-slider-con .slick-track {
+        gap: 76px;
+    }
+
+    .logo-slide img {
         max-height: 26px;
     }
-     .social-share {
+    .logo-slide.all-tech img,
+    .logo-slide.abc img,
+    .logo-slide.pc-mag img  {
+        max-height: 35px;
+    }
+    .logo-slide.fox-business img  {
+        max-height: 30px;
+    }
+
+
+    .social-share {
         gap: 65px;
     }
     .social-share img {
@@ -955,17 +1074,46 @@ and (orientation: landscape) {
         margin-bottom: 70px;
     }
     .footer-menu-inner a {
-        font-size: 16px;
+        font-size: 13.5px;
     }
+    .copy-right-text img {
+        height: 15.02px;
+    }
+   
+
+
+}
 
 
 
+
+@media only screen and (max-width: 479px)  {
+    .copy-right-text img {
+        height: 2.8vw;
+    }
+}
+
+@media only screen and (max-width: 330px)  {
+    /* banner section */
+    .banner-section {
+        height: 590px;
+    }
+    .cta {
+        gap: 7px;
+        padding: 9px 22px;
+    }
+    .banner-wrap {
+        padding-top: 26px;
+    }
+    .org-circle-con {
+        width: 35px;
+        height: 35px;
+    }
+    .org-circle-con lottie-player {
+        width: 110px !important;
+        height: 110px !important;
+    }
     
-
-
-
-
-    /* End */
 }
 
 
@@ -984,44 +1132,4 @@ and (orientation: landscape) {
 }
 
 
-@keyframes circleBounce {
-    0% {
-      transform: translate(0, 0);
-    }
-    25% {
-        transform: translate(10px, 10px);
-    }
-    50% {
-        transform: translate(0, 10px);
-    }
-    75% {
-      transform: translate(10px, 0);
-    }
-    100% {
-        transform: translate(0, 0);
-    }
-}
 
-@keyframes orbitGrow {
-    0% {
-        transform: rotate(0deg) translateX(5vw) translateY(5vw) rotate(0deg);
-        width: 0px;
-        height: 0px;
-    }
-    100% {
-        transform: rotate(180deg) translateX(0) translateY(0) rotate(-180deg);
-        width: inherit;
-        height: inherit;
-    }
-}
-
-@keyframes text {
-    from {
-        transform: translate(0, 2rem );
-        opacity: 0;
-    }
-    to {
-        transform: translate(0, 0);
-        opacity: 1;
-    }
-}
