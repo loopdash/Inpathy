@@ -2,7 +2,7 @@ $(document).ready(function(){
 
   //Carousel
   $('.logo-slider').slick({
-    speed: 7000,
+    speed: 5000,
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
@@ -16,13 +16,19 @@ $(document).ready(function(){
       {
         breakpoint: 1024,
         settings: {
-          speed: 7000,
+          speed: 5000,
+        }
+      },
+      {
+        breakpoint: 991,
+        settings: {
+          speed: 4000,
         }
       },
       {
         breakpoint: 767,
         settings: {
-          speed: 8000,
+          speed: 5000,
         }
       }
 
@@ -56,7 +62,7 @@ $(window).on('scroll', function () {
 
 
 // this one is complete
-$(window).on('scroll', function () {
+$(window).on('scroll resize ', function () {
   var $sliderContent = $('.slider-content');
   var $slideImgText = $('.slide-img-text');
 
@@ -78,13 +84,26 @@ $(window).on('scroll', function () {
   $('.sm-1 img').css('filter', 'brightness(' + brightness + '%)');
   $('.text-1').css('opacity', progress);
 
+  console.log(progress);
+
+  if ($(window).width() <= 767) {
+
+    //this is not changing on scroll
+    if( progress == 1 ) {
+      $('.sm-1 img.light').css('opacity', (1 - progress));
+    } else {
+      $('.sm-1 img.light').css('opacity', 1);
+    }
+    $('.sm-1 img.light-dark').css('opacity', progress);
+  }
+
   
 });
 
 
 
 
-
+$('.dot-1').css('opacity', 1);
 
 
 
@@ -115,20 +134,83 @@ $(window).on('scroll', function () {
 
     var textOpacity;
   
-    if (currentStep === 1 && stepProgress < 0.3) { 
+    $('.slider-text').css('opacity', '0');
+
+    //for step 1
+    if (currentStep === 1 && stepProgress < 0.8) { 
       textOpacity = 1;
-    } else if (currentStep === 1 && stepProgress >= 0.3) {
-      textOpacity = Math.max(0, 1 - (stepProgress - 0.3) * 2.5);
-    }  else if (stepProgress < 0.5) { 
-      textOpacity = stepProgress * 2; 
-    } else { 
-      textOpacity = Math.max(0, 1 - (stepProgress - 0.5) * 2); 
+      $('.text-' + currentStep).css('opacity', textOpacity);
+    } 
+
+    else if (currentStep === 1 && stepProgress > 0.8 && stepProgress <= 1) {
+      textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress));
+      $('.text-' + currentStep).css('opacity', textOpacity);
+    } 
+
+
+    //except first step
+    else if (currentStep != 1 && stepProgress < 0.1) {
+      textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress));
+      if(currentStep === totalSteps) {
+        $('.text-' + currentStep).css('opacity', textOpacity);
+      } else {
+        $('.text-' + (currentStep - 1)).css('opacity', textOpacity);
+      }
+      $('.text-' + currentStep).css('opacity', 0);
+    } 
+
+
+    //only last step
+    else if ( (currentStep === totalSteps ) && stepProgress > .1 && stepProgress <= 1) { 
+
+      if(stepProgress > .1 && stepProgress <= 0.2) {
+        $('.text-' + currentStep).css('opacity', .3); 
+      } else if(stepProgress > .2 && stepProgress <= 0.25) {
+        $('.text-' + currentStep).css('opacity', .4); 
+      } else if(stepProgress > .25 && stepProgress <= 0.3) {
+        $('.text-' + currentStep).css('opacity', .5); 
+      } else if(stepProgress > .3 && stepProgress <= 0.35) {
+        $('.text-' + currentStep).css('opacity', .6); 
+      } else if(stepProgress > .35 && stepProgress <= 0.45) {
+        $('.text-' + currentStep).css('opacity', .8); 
+      } else {
+        $('.text-' + currentStep).css('opacity', 1); 
+      }
+           
+    } 
+
+
+    //except first and last text
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > .1 && stepProgress <= 0.3) { 
+      $('.text-' + currentStep).css('opacity', 0);      
+    } 
+
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.3 && stepProgress <= 0.35) { 
+      // textOpacity = Math.min(0.6, Math.max(0.3, 1 - (stepProgress)* 5  )); 
+      $('.text-' + currentStep).css('opacity', 0.3 );
+    } 
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.35 &&  stepProgress <= 0.4 ) { 
+      $('.text-' + currentStep).css('opacity', 0.4 );
+    } 
+
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.4 &&  stepProgress <= 0.45 ) { 
+      $('.text-' + currentStep).css('opacity', 0.6);
+    } 
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.45 &&  stepProgress <= 0.5 ) { 
+      $('.text-' + currentStep).css('opacity', 0.8);
+    } 
+
+    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.5 && stepProgress <= 0.8 ) { 
+      $('.text-' + currentStep).css('opacity', 1);
+    } 
+
+    else if( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.8) { 
+      textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress)); 
+      $('.text-' + currentStep).css('opacity', textOpacity);
     }
 
-
-    // Update Text
-    $('.slider-text').css('opacity', '0');
-    $('.text-' + currentStep).css('opacity', textOpacity);
+    
+   
 
 
 
@@ -158,7 +240,14 @@ $(window).on('scroll', function () {
         } else {
           currentImage.css('opacity', stepProgress * 5);
           currentBg.css('opacity', stepProgress * 5);
-          currentDot.css('opacity', 0.3 + stepProgress * 3.5);
+          
+
+          if(currentStep < 2) {
+            currentDot.css('opacity', 1);
+          } else {
+            currentDot.css('opacity', 0.3 + stepProgress * 3.5);
+          }
+          
   
           if (currentStep > 1 && $('.sm-' + (currentStep - 1)).length && $('.bg-' + (currentStep - 1)).length  && $('.dot-' + (currentStep - 1)).length) {
             $('.sm-' + (currentStep - 1)).css('opacity', Math.max(0, 1 - stepProgress * 5));

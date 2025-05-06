@@ -327,7 +327,10 @@ section {
 }
 .slider-img.sm-1 {
     opacity: 1 !important;
+    width: calc(100% -2px);
 }
+
+
 .slider-img img {
     height: calc(100vh - 111px);
     /* height: 89.72vh; */
@@ -336,6 +339,20 @@ section {
     border-radius: 5.1vh;
 }
 
+.slider-img.sm-1 img {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.slider-img.sm-1 img.light {
+    z-index: 9;
+} 
+.slider-img.sm-1 img.light-dark {
+    z-index: 8;
+    opacity: 0 ;
+    filter: unset !important;
+} 
 
 
 
@@ -343,9 +360,6 @@ section {
 
 
 /*************************************** Footer Section ***************************************/
-.footer-section {
-    /* min-height: 100vh; */
-}
 
 .footer-sec-inner {
     padding-bottom: 112px;
@@ -357,19 +371,30 @@ section {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 205px;
+    gap: 210px;
 }
+
 .logo-slide a {
     display: flex;
     justify-content: center;
+    position: relative;
 }
 .logo-slide img {
-    filter: grayscale(100%) brightness(70%) contrast(100%);
     max-height: 50px;
-    transition: filter .4s linear;
+    transition: all .3s linear;
 }
-.logo-slide:hover img {
-    filter: none;
+.logo-slide img.pink {
+    visibility: hidden;
+    opacity: 0;
+    position: absolute;
+}
+.logo-slide:hover img.pink {
+    visibility: visible;
+    opacity: 1;
+}
+.logo-slide:hover img.dark{
+    visibility: hidden;
+    opacity: 0;
 }
 /* Logo img size */
 .logo-slide.all-tech img ,
@@ -515,7 +540,7 @@ section {
         object-fit: contain;
     }
     .logo-slider-con .slick-track {
-        gap: 132px;
+        gap: 140px;
     }
 
     .social-share {
@@ -684,7 +709,7 @@ section {
         font-size: 14.3px;
     }
     .logo-slider-con .slick-track {
-        gap: 125px;
+        gap: 135px;
     }
     .logo-slide img {
         max-height: 30px;
@@ -710,9 +735,7 @@ section {
 }
 
 
-@media only screen 
-and (max-width: 1280px)
-and (orientation: portrait) { 
+@media only screen and (max-width: 1280px) and (orientation: portrait) { 
 
     /* Ipad pro portrait */
     .org-circle-con {
@@ -801,7 +824,7 @@ and (orientation: portrait) {
         font-size: 16px;
     }
     .logo-slider-con .slick-track {
-        gap: 100px;
+        gap: 105px;
     }
     .logo-slide img {
         max-height: 30px;
@@ -817,9 +840,7 @@ and (orientation: portrait) {
 
 
 
-@media only screen 
-and (max-width: 991px)
-and (orientation: landscape) {
+@media only screen and (max-width: 991px) and (orientation: landscape) {
     /* Banner */
     .banner-wrap {
         padding-top: 45px;
@@ -908,7 +929,7 @@ and (orientation: landscape) {
         max-height: 25px;
     }
     .logo-slider-con .slick-track {
-        gap: 100px;
+        gap: 110px;
     }
 
     .logo-slide.all-tech img ,
@@ -932,7 +953,7 @@ and (orientation: landscape) {
         font-size: 9px;
     }
     .copy-right-text img {
-        height: 1.8vw;
+        height: 1.2vw;
     }
 
 
@@ -1016,9 +1037,7 @@ and (orientation: landscape) {
 
 
     /* SLider */
-    .slider-img img {
-        box-shadow: unset;
-    }
+
     .slide-img-text {
         transform: translateY(-33vh);
     }
@@ -1030,15 +1049,16 @@ and (orientation: landscape) {
         left: 15px;
     }
     .slider-img img {
-        height: 80.63vh;
-        max-width: calc(100% - 57px);
+        height: auto;
+        max-width: 300px;
         object-fit: contain;
+        box-shadow: 40px 60px 2004px #00000012;
     }
 
 
      /* Footer */
      .logo-slider-con .slick-track {
-        gap: 76px;
+        gap: 82px;
     }
 
     .logo-slide img {
@@ -1091,6 +1111,8 @@ and (orientation: landscape) {
     .copy-right-text img {
         height: 2.8vw;
     }
+
+    
 }
 
 @media only screen and (max-width: 330px)  {
@@ -1112,6 +1134,10 @@ and (orientation: landscape) {
     .org-circle-con lottie-player {
         width: 110px !important;
         height: 110px !important;
+    }
+
+    .slider-img img {
+        max-width: calc(100% - 60px);
     }
     
 }
