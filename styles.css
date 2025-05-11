@@ -89,22 +89,12 @@ section {
     transform: translate(-50%, -50%);
 }
 
-.round_circle {
-    background: linear-gradient(148deg, #FFD1C9 -2.74%, #FFAB9D 131.52%);
-    box-shadow: 0 24px 80px 0 #ff5f447d;
-    width: inherit;
-    height: inherit;
-    border-radius: 50%;
-    z-index: 999;
-    transition: transform 0.9s ease-in-out; 
-    animation: circleBounce 4s linear infinite forwards;
-
+.desk {
+    display: block;
 }
-
-.round_circle.animate-orbit {
-    animation: orbitGrow .6s ease-in-out forwards;
+.mobile {
+    display: none;
 }
-
 
 
 
@@ -247,6 +237,7 @@ section {
     transform: translateY(-30vh);
     transition: transform 0.1s linear;
     z-index: 9;
+    will-change: transform;
 }
 .slider-bg {
     height: 100vh;
@@ -254,6 +245,7 @@ section {
     position: absolute;
     top: 0;
     left: 0;
+    will-change: opacity;
 }
 .bg-1 {
     background-image: radial-gradient(circle at 0 0, #ffd5ce, #ffb1a3);
@@ -295,6 +287,7 @@ section {
     background-color: #fff;
     opacity: 0.3;
     transition: opacity 0.3s ease;
+    will-change: opacity;
 }
 .dot.active {
     opacity: 1;
@@ -311,6 +304,7 @@ section {
     color: #fff;
     opacity: 0;
     z-index: 10;
+    will-change: opacity;
 }
 .slider-text.active {
     opacity: 1;
@@ -324,6 +318,7 @@ section {
     display: flex;
     justify-content: center;
     opacity: 0;
+    will-change: opacity;
 }
 .slider-img.sm-1 {
     opacity: 1 !important;
@@ -345,6 +340,7 @@ section {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
+    will-change: filter, opacity;
 }
 .slider-img.sm-1 img.light {
     z-index: 9;
@@ -981,6 +977,13 @@ section {
 
 
 @media only screen and (max-width: 767px)  {
+    .desk {
+        display: none;
+    }
+    .mobile {
+        display: block;
+    }
+
 
     .banner-section {
         height: calc(100vh - 70px);
@@ -1055,6 +1058,9 @@ section {
 
 
     /* SLider */
+    .slider-section {
+        min-height: 700vh;
+    }
 
     .slide-img-text {
         transform: translateY(-33vh);

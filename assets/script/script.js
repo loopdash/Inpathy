@@ -15,43 +15,48 @@ $(window).on('scroll', function () {
 
 
 
-// this one is complete
-$(window).on('scroll resize ', function () {
+
+
+// brightness and opacity
+$(window).on('scroll resize', function () {
   var $sliderContent = $('.slider-content');
   var $slideImgText = $('.slide-img-text');
 
-  var contentTop    = $sliderContent.offset().top;
-  var windowHeight  = $(window).height();
-  var scrollTop     = $(window).scrollTop();
+  var contentTop = $sliderContent.offset().top;
+  var windowHeight = $(window).height();
+  var scrollTop = $(window).scrollTop();
 
   var distanceFromTop = contentTop - scrollTop;
   var progress = 1 - (distanceFromTop / windowHeight);
-
   progress = Math.max(0, Math.min(progress, 1));
 
   var translateY = (1 - progress) * -30;
-
   $slideImgText.css('transform', 'translateY(' + translateY + 'vh)');
 
-
   var brightness = 100 - (30 * progress);
-  $('.sm-1 img').css('filter', 'brightness(' + brightness + '%)');
+
+  // Ensure brightness is 100% at the very top
+  if (scrollTop === 0) {
+    brightness = 100;
+  }
+
+  $('.sm-1 img.brightness').css('filter', 'brightness(' + brightness + '%)');
   $('.text-1').css('opacity', progress);
 
-
   if ($(window).width() <= 767) {
-
-    //this is not changing on scroll
-    if( progress == 1 ) {
-      $('.sm-1 img.light').css('opacity', (1 - progress));
+    if (progress === 1) {
+      $('.sm-1 img.light').css('opacity', 0);
     } else {
       $('.sm-1 img.light').css('opacity', 1);
     }
     $('.sm-1 img.light-dark').css('opacity', progress);
   }
-
-  
 });
+
+
+
+
+
 
 
 
@@ -251,7 +256,7 @@ $(window).on('scroll', function () {
 
 
 
-
+//Carousel
 $(document).ready(function () {
   const $slide = $('.carousel-slide');
   const $footer = $('.footer-section');
@@ -305,7 +310,7 @@ $(document).ready(function () {
     }
   });
 
-  
+
   if (isFooterInView() && !animationStarted) {
     animationStarted = true;
     scrollLogos();
