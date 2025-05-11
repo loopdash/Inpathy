@@ -35,6 +35,10 @@ $(window).on('scroll resize', function () {
 
   var brightness = 100 - (30 * progress);
 
+  if ($(window).width() <= 767) {
+    var brightness = 100 - (20 * progress);
+  }
+
   // Ensure brightness is 100% at the very top
   if (scrollTop === 0) {
     brightness = 100;
@@ -43,14 +47,14 @@ $(window).on('scroll resize', function () {
   $('.sm-1 img.brightness').css('filter', 'brightness(' + brightness + '%)');
   $('.text-1').css('opacity', progress);
 
-  if ($(window).width() <= 767) {
-    if (progress === 1) {
-      $('.sm-1 img.light').css('opacity', 0);
-    } else {
-      $('.sm-1 img.light').css('opacity', 1);
-    }
-    $('.sm-1 img.light-dark').css('opacity', progress);
-  }
+  // if ($(window).width() <= 767) {
+  //   if (progress === 1) {
+  //     $('.sm-1 img.light').css('opacity', 0);
+  //   } else {
+  //     $('.sm-1 img.light').css('opacity', 1);
+  //   }
+  //   $('.sm-1 img.light-dark').css('opacity', progress);
+  // }
 });
 
 
