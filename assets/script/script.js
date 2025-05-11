@@ -1,49 +1,3 @@
-$(document).ready(function(){
-
-  //Carousel
-  $('.logo-slider').slick({
-    speed: 5000,
-    autoplay: true,
-    autoplaySpeed: 0,
-    cssEase: 'linear',
-    slidesToShow: 4,
-    slidesToScroll: 1,
-    infinite: true,
-    arrows: false,
-    pauseOnHover: false,
-    variableWidth: true,
-    responsive: [
-      {
-        breakpoint: 1024,
-        settings: {
-          speed: 5000,
-        }
-      },
-      {
-        breakpoint: 991,
-        settings: {
-          speed: 4000,
-        }
-      },
-      {
-        breakpoint: 767,
-        settings: {
-          speed: 5000,
-        }
-      }
-
-    ]
-
-  });
-
-
-});
-//document ready
-
-
-
-
-
 function isPartiallyInView(elem) {
   var docViewTop    = $(window).scrollTop(),
       docViewBottom = docViewTop + $(window).height(),
@@ -84,7 +38,6 @@ $(window).on('scroll resize ', function () {
   $('.sm-1 img').css('filter', 'brightness(' + brightness + '%)');
   $('.text-1').css('opacity', progress);
 
-  console.log(progress);
 
   if ($(window).width() <= 767) {
 
@@ -291,12 +244,71 @@ $(window).on('scroll', function () {
 
       }
     }
-
-   
-
   }
 });
 
 
 
+
+
+
+$(document).ready(function () {
+  const $slide = $('.carousel-slide');
+  const $footer = $('.footer-section');
+  const wrapperWidth = $('.carousel-wrapper').outerWidth();
+  let $items = $slide.children();
+  let left = 0;
+  let animationStarted = false;
+
+  function getScrollSpeed() {
+    const width = $(window).width();
+    if (width >= 1950) return 2; 
+    if (width >= 1200) return 1.5; 
+    if (width >= 768) return 1.2;   
+    return 0.8;                   
+  }
+
+  let scrollSpeed = getScrollSpeed();
+
+  function fillCarousel() {
+    $slide.append($items.clone());
+    let currentWidth = $slide.outerWidth(true);
+    while (currentWidth < wrapperWidth * 30) {
+      $slide.append($items.clone());
+      currentWidth = $slide.outerWidth(true);
+    }
+  }
+
+  function scrollLogos() {
+    if (!animationStarted) return;
+    left -= scrollSpeed;
+    if (Math.abs(left) >= $slide.width() / 2) {
+      left = 0;
+    }
+    $slide.css('left', left + 'px');
+    requestAnimationFrame(scrollLogos);
+  }
+
+  function isFooterInView() {
+    const footerTop = $footer.offset().top;
+    const scrollTop = $(window).scrollTop();
+    const windowHeight = $(window).height();
+    return footerTop < scrollTop + windowHeight;
+  }
+
+  fillCarousel();
+
+  $(window).on('scroll resize', function () {
+    if (!animationStarted && isFooterInView()) {
+      animationStarted = true;
+      scrollLogos();
+    }
+  });
+
+  
+  if (isFooterInView() && !animationStarted) {
+    animationStarted = true;
+    scrollLogos();
+  }
+});
 

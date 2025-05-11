@@ -339,6 +339,7 @@ section {
     border-radius: 5.1vh;
 }
 
+/* Test */
 .slider-img.sm-1 img {
     position: absolute;
     top: 50%;
@@ -350,11 +351,10 @@ section {
 } 
 .slider-img.sm-1 img.light-dark {
     z-index: 8;
+    /* height: 79vh; */
     opacity: 0 ;
     filter: unset !important;
 } 
-
-
 
 
 
@@ -364,14 +364,30 @@ section {
 .footer-sec-inner {
     padding-bottom: 112px;
 }
-.logo-slider-con {
-   padding: 11.1vw 0
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+  width: 100%;
 }
-.logo-slider-con .slick-track {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 210px;
+
+.carousel-track {
+  position: relative;
+  height: 100%;
+  padding: 11.1vw 0
+}
+
+.carousel-slide {
+  display: flex;
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50% );
+  white-space: nowrap;
+}
+
+.logo-slider-con .logo-slide {
+    margin: 0 105px;
 }
 
 .logo-slide a {
@@ -536,11 +552,10 @@ section {
     .logo-slide img {
         max-height: 2.63671875vw;
         height: 100%;
-        width: 100%;
         object-fit: contain;
     }
-    .logo-slider-con .slick-track {
-        gap: 140px;
+    .logo-slider-con .logo-slide {
+        margin: 0 70px;
     }
 
     .social-share {
@@ -708,8 +723,9 @@ section {
     .footer-menu-inner a {
         font-size: 14.3px;
     }
-    .logo-slider-con .slick-track {
-        gap: 135px;
+    .logo-slider-con .logo-slide {
+        /* gap: 135px; */
+        margin: 0 67px;
     }
     .logo-slide img {
         max-height: 30px;
@@ -720,7 +736,7 @@ section {
     .logo-slide.fox-business img {
         max-height: 35px;
     }
-    .logo-slider-con {
+    .carousel-track{
         padding: 112px 0;
     }
     .footer-sec-inner {
@@ -823,8 +839,9 @@ section {
     .footer-menu-inner a {
         font-size: 16px;
     }
-    .logo-slider-con .slick-track {
-        gap: 105px;
+    .logo-slider-con .logo-slide {
+        /* gap: 105px; */
+        margin: 0 53px;
     }
     .logo-slide img {
         max-height: 30px;
@@ -928,8 +945,9 @@ section {
     .logo-slide img {
         max-height: 25px;
     }
-    .logo-slider-con .slick-track {
-        gap: 110px;
+    .logo-slider-con .logo-slide {
+        /* gap: 110px; */
+        margin: 0 55px;
     }
 
     .logo-slide.all-tech img ,
@@ -946,7 +964,7 @@ section {
     .social-share img {
         height: 16.55px;
     }
-    .logo-slider-con {
+    .carousel-track{
         padding: 80px 0;
     }
     .footer-menu-inner a {
@@ -1056,9 +1074,10 @@ section {
     }
 
 
-     /* Footer */
-     .logo-slider-con .slick-track {
-        gap: 82px;
+    /* Footer */
+    .logo-slider-con .logo-slide {
+        /* gap: 82px; */
+        margin: 0 41px;
     }
 
     .logo-slide img {
@@ -1087,7 +1106,7 @@ section {
     .footer-sec-inner {
         padding-bottom: 50px;
     }
-    .logo-slider-con {
+    .carousel-track{
         padding: 70px 0;
     }
     .footer-section .cta-wrap {
