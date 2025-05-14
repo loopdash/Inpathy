@@ -30,31 +30,38 @@ $(window).on('scroll resize', function () {
   var progress = 1 - (distanceFromTop / windowHeight);
   progress = Math.max(0, Math.min(progress, 1));
 
-  var translateY = (1 - progress) * -30;
-  $slideImgText.css('transform', 'translateY(' + translateY + 'vh)');
+  if (scrollTop === 0) {
+    progress = 0;
+  }
 
+
+  var translateY = (1 - progress) * -30;
   var brightness = 100 - (30 * progress);
+
 
   if ($(window).width() <= 767) {
     var brightness = 100 - (20 * progress);
+    var translateY = (1 - progress) * -33;
   }
 
-  // Ensure brightness is 100% at the very top
-  if (scrollTop === 0) {
-    brightness = 100;
-  }
+  
 
+  $slideImgText.css('transform', 'translateY(' + translateY + 'vh)');
   $('.sm-1 img.brightness').css('filter', 'brightness(' + brightness + '%)');
   $('.text-1').css('opacity', progress);
 
-  // if ($(window).width() <= 767) {
-  //   if (progress === 1) {
-  //     $('.sm-1 img.light').css('opacity', 0);
-  //   } else {
-  //     $('.sm-1 img.light').css('opacity', 1);
-  //   }
-  //   $('.sm-1 img.light-dark').css('opacity', progress);
-  // }
+
+  //boxShadow
+   if ($(window).width() <= 480) {
+    var blur = 2004 - (progress * (2004 - 200));
+    var opacity = 0.28 - (progress * (0.28 - 0.07));
+    var boxShadow = `40px 60px ${blur}px rgba(0, 0, 0, ${opacity})`;
+
+    $('.slider-img.sm-1 img').css('box-shadow', boxShadow);
+
+  }
+
+  
 });
 
 
