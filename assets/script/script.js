@@ -41,7 +41,7 @@ $(window).on('scroll resize', function () {
 
   if ($(window).width() <= 767) {
     var brightness = 100 - (20 * progress);
-    var translateY = (1 - progress) * -33;
+    var translateY = (1 - progress) * -35;
   }
 
   

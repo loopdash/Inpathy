@@ -766,7 +766,7 @@ section {
     }
 
     .banner-section {
-        height: 93vh;
+        height: 100svh;
         min-height: 550px;
     }
 
@@ -1005,8 +1005,8 @@ section {
 
 
     .banner-section {
-        /* height: calc(100vh - 70px); */
-        height: 710px;
+        height: 100svh;
+        min-height: 710px;
     }
     .org-circle-con {
         width: 50px;
@@ -1082,12 +1082,12 @@ section {
 
 
     /* SLider */
-    .slider-section {
+    /* .slider-section {
         min-height: 700vh;
-    }
+    } */
 
     .slide-img-text {
-        transform: translateY(-33vh);
+        transform: translateY(-35vh);
     }
     .slider-text {
         font-size: 6.76vw;
@@ -1169,7 +1169,7 @@ section {
 @media only screen and (max-width: 330px)  {
     /* banner section */
     .banner-section {
-        height: 590px;
+        min-height: 590px;
     }
     .cta {
         gap: 7px;
