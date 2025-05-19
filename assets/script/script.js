@@ -41,7 +41,7 @@ $(window).on('scroll resize', function () {
 
   if ($(window).width() <= 767) {
     var brightness = 100 - (20 * progress);
-    var translateY = (1 - progress) * -35;
+    var translateY = (1 - progress) * -38;
   }
 
   
@@ -150,32 +150,63 @@ $(window).on('scroll', function () {
 
 
     //except first and last text
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > .1 && stepProgress <= 0.3) { 
-      $('.text-' + currentStep).css('opacity', 0);      
-    } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > .1 && stepProgress <= 0.3) { 
+    //   $('.text-' + currentStep).css('opacity', 0);      
+    // } 
 
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.3 && stepProgress <= 0.35) { 
-      // textOpacity = Math.min(0.6, Math.max(0.3, 1 - (stepProgress)* 5  )); 
-      $('.text-' + currentStep).css('opacity', 0.3 );
-    } 
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.35 &&  stepProgress <= 0.4 ) { 
-      $('.text-' + currentStep).css('opacity', 0.4 );
-    } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.3 && stepProgress <= 0.35) { 
+    //   // textOpacity = Math.min(0.6, Math.max(0.3, 1 - (stepProgress)* 5  )); 
+    //   $('.text-' + currentStep).css('opacity', 0.3 );
+    // } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.35 &&  stepProgress <= 0.4 ) { 
+    //   $('.text-' + currentStep).css('opacity', 0.4 );
+    // } 
 
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.4 &&  stepProgress <= 0.45 ) { 
-      $('.text-' + currentStep).css('opacity', 0.6);
-    } 
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.45 &&  stepProgress <= 0.5 ) { 
-      $('.text-' + currentStep).css('opacity', 0.8);
-    } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.4 &&  stepProgress <= 0.45 ) { 
+    //   $('.text-' + currentStep).css('opacity', 0.6);
+    // } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.45 &&  stepProgress <= 0.5 ) { 
+    //   $('.text-' + currentStep).css('opacity', 0.8);
+    // } 
 
-    else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.5 && stepProgress <= 0.8 ) { 
-      $('.text-' + currentStep).css('opacity', 1);
-    } 
+    // else if ( (currentStep != 1) &&  (currentStep != totalSteps ) && stepProgress > 0.5 && stepProgress <= 0.8 ) { 
+    //   $('.text-' + currentStep).css('opacity', 1);
+    // } 
 
-    else if( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.8) { 
-      textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress)); 
-      $('.text-' + currentStep).css('opacity', textOpacity);
+    // else if( (currentStep != 1) &&  (currentStep != totalSteps )  && stepProgress > 0.8) { 
+    //   textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress)); 
+    //   $('.text-' + currentStep).css('opacity', textOpacity);
+    // }
+
+    //except first and last text
+    else if ((currentStep != 1) && (currentStep != totalSteps)) {
+      
+      // Fade in current text
+      if (stepProgress > 0.1 && stepProgress <= 0.3) {
+        $('.text-' + currentStep).css('opacity', 0);
+      } else if (stepProgress > 0.3 && stepProgress <= 0.35) {
+        $('.text-' + currentStep).css('opacity', 0.3);
+      } else if (stepProgress > 0.35 && stepProgress <= 0.4) {
+        $('.text-' + currentStep).css('opacity', 0.4);
+      } else if (stepProgress > 0.4 && stepProgress <= 0.45) {
+        $('.text-' + currentStep).css('opacity', 0.6);
+      } else if (stepProgress > 0.45 && stepProgress <= 0.5) {
+        $('.text-' + currentStep).css('opacity', 0.8);
+      } else if (stepProgress > 0.5 && stepProgress <= 0.8) {
+        $('.text-' + currentStep).css('opacity', 1);
+      } else if (stepProgress > 0.8) {
+        let textOpacity = Math.min(0.8, Math.max(0.3, 1 - stepProgress));
+        $('.text-' + currentStep).css('opacity', textOpacity);
+      }
+      else if (stepProgress > 0.99999) {
+        $('.text-' + currentStep).css('opacity', 0);
+      }
+
+      // Prevent next step's text from appearing until current is fully visible
+      if (stepProgress <= 0.5) {
+        $('.text-' + (currentStep + 1)).css('opacity', 0);
+      }
+
     }
 
     
