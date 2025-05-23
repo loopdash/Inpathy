@@ -52,7 +52,7 @@ $(window).on('scroll resize', function () {
 
 
   //boxShadow
-   if ($(window).width() <= 480) {
+  if ($(window).width() <= 480) {
     var blur = 2004 - (progress * (2004 - 200));
     var opacity = 0.28 - (progress * (0.28 - 0.07));
     var boxShadow = `40px 60px ${blur}px rgba(0, 0, 0, ${opacity})`;
@@ -171,13 +171,25 @@ $(window).on('scroll resize', function () {
       } else if (stepProgress > 0.5 && stepProgress <= 0.8) {
         $('.text-' + currentStep).css('opacity', 1);
       } else if (stepProgress > 0.8) {
-        let textOpacity = Math.min(0.6, Math.max(0.3, 1 - stepProgress));
-        $('.text-' + currentStep).css('opacity', textOpacity);
+
+        if ($(window).width() <= 767) {
+          //for mobile
+          if (stepProgress > 0.8 && stepProgress <= 0.84) {
+            $('.text-' + currentStep).css('opacity', 0.8);
+          } else if (stepProgress > 0.84 && stepProgress <= 0.90) {
+            $('.text-' + currentStep).css('opacity', 0.6);
+          } else if (stepProgress > 0.90 && stepProgress <= 0.94) {
+            $('.text-' + currentStep).css('opacity',0.3);
+          } else {
+            $('.text-' + currentStep).css('opacity',0);
+          }
+
+        } else {
+          //for desktop
+          let textOpacity = Math.min(0.6, Math.max(0.3, 1 - stepProgress));
+          $('.text-' + currentStep).css('opacity', textOpacity);
+        }
       }
-      // else if (stepProgress >= 0  && stepProgress < 2) {
-      //   $('.text-' + (currentStep + 1)).css('opacity', 0);
-      //   $('.text-' + (currentStep - 1)).css('opacity', 0);
-      // }
 
     }
 
